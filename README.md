@@ -34,8 +34,8 @@ A transição para o mundo digital — como o uso do Pix e de bancos digitais �
 | :--- | :--- | :--- |
 | **Front-End** | HTML5, CSS3 e JavaScript | Camada de apresentação responsável pela interface do usuário através de templates responsivos. Prioriza a ergonomia e a acessibilidade (como botões grandes e alto contraste) para reduzir a carga cognitiva e adaptar-se dinamicamente ao perfil do idoso. |
 | **Back-End** | Python e Django 6.0 | Linguagem principal e framework web que adotam o padrão de arquitetura MVT (Model-View-Template). Fornecem alta escalabilidade, suporte a operações assíncronas e proteções nativas contra vulnerabilidades comuns da web para suportar o processamento dinâmico do suporte adaptativo. |
-| **Banco de Dados** | SQLite |  |
-| **Deploy** | Render |  |
+| **Banco de Dados** | SQLite | Banco leve e integrado ao Django, ideal para facilitar o desenvolvimento, a portabilidade e a agilidade nas consultas. |
+| **Deploy** | Render | Plataforma que automatiza o processo de publicação (CI/CD) e simplifica o gerenciamento da infraestrutura web. |
 
 ## 📁 Estrutura de Pastas
 
