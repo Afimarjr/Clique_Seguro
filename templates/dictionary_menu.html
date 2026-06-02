@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+    
+    <div class="flex items-center gap-4 mb-8">
+        <a href="{% url 'home' %}" class="flex items-center gap-3 {% if high_contrast %}text-white hover:text-gray-300{% else %}text-gray-700 hover:text-gray-900{% endif %} transition-colors w-fit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 sm:w-10 sm:h-10">
+                <path d="m12 19-7-7 7-7"/>
+                <path d="M19 12H5"/>
+            </svg>
+            <span class="text-xl sm:text-2xl font-bold">Voltar ao Início</span>
+        </a>
+    </div>
+
+    <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">
+            Dicionário
+        </h1>
+        <p class="text-xl sm:text-2xl {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %}">
+            Escolha o que deseja consultar
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        
+        <a href="{% url 'dictionary_words' %}" class="{% if high_contrast %}bg-gray-900 border-4 border-white hover:bg-gray-800{% else %}bg-white hover:bg-gray-50{% endif %} rounded-3xl p-8 sm:p-12 shadow-xl transition-all hover:scale-105 group text-center block">
+            <div class="flex justify-center mb-6">
+                <div class="{% if high_contrast %}bg-yellow-400 text-black{% else %}bg-indigo-100 text-indigo-600{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                </div>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-3 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Dicionário de Palavras</h2>
+            <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %}">Aprenda o significado das palavras difíceis (App, Wi-Fi, Link, etc.)</p>
+        </a>
+
+        <a href="{% url 'dictionary_icons' %}" class="{% if high_contrast %}bg-gray-900 border-4 border-white hover:bg-gray-800{% else %}bg-white hover:bg-gray-50{% endif %} rounded-3xl p-8 sm:p-12 shadow-xl transition-all hover:scale-105 group text-center block">
+            <div class="flex justify-center mb-6">
+                <div class="{% if high_contrast %}bg-yellow-400 text-black{% else %}bg-purple-100 text-purple-600{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-3 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Dicionário de Ícones</h2>
+            <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %}">Descubra para que servem os símbolos e botões do telemóvel.</p>
+        </a>
+
+    </div>
+</main>
+{% endblock %}

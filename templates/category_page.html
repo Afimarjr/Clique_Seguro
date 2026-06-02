@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+    
+    <div class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}{{ category.color }}{% endif %} rounded-3xl p-10 sm:p-14 mb-12 text-center shadow-xl">
+        <div class="flex justify-center mb-6">
+            <div class="bg-white rounded-2xl p-4 w-20 h-20 flex items-center justify-center shadow-inner {% if high_contrast %}text-white bg-black{% else %}text-gray-800{% endif %}">
+                {{ category.icon_svg|safe }}
+            </div>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-white">
+            {{ category.name }}
+        </h1>
+        <p class="text-xl sm:text-2xl text-white">
+            {{ category.subtitle }}
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for tutorial in tutorials %}
+        
+        <a href="{% url 'tutorial' category.id tutorial.id %}" class="{% if high_contrast %}bg-black border-4 border-white hover:bg-gray-900{% else %}bg-white hover:bg-gray-50{% endif %} rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-xl transition-all flex items-center gap-5">
+            
+            <div class="w-20 h-20 flex-shrink-0 rounded-2xl {{ category.color }} flex items-center justify-center text-white shadow-md">
+                <i data-lucide="{{ tutorial.icon }}" class="w-10 h-10"></i>
+            </div>
+            
+            <div class="flex-1 text-left">
+                <h2 class="text-xl font-bold mb-1 {% if high_contrast %}text-white{% else %}text-gray-900{% endif %}">
+                    {{ tutorial.title }}
+                </h2>
+                <p class="text-sm {% if high_contrast %}text-gray-300{% else %}text-gray-500{% endif %}">
+                    {{ tutorial.desc }}
+                </p>
+            </div>
+            
+        </a>
+        
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <p class="text-2xl text-gray-500">Ainda não há tutoriais nesta categoria. Adicione um pelo Painel Administrativo!</p>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="mt-12 flex justify-center">
+        <a href="{% url 'home' %}" class="{% if high_contrast %}bg-white text-black hover:bg-gray-300{% else %}bg-white text-gray-800 hover:bg-gray-100{% endif %} px-8 py-4 rounded-xl font-bold transition-all text-xl shadow-lg flex items-center gap-3">
+            <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            Voltar ao Início
+        </a>
+    </div>
+
+</main>
+{% endblock %}

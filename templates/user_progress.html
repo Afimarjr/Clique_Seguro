@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen px-4 py-8">
+    <div class="max-w-5xl mx-auto">
+        
+        <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+            <a href="{% url 'home' %}" class="bg-white text-gray-700 hover:bg-gray-100 px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-3 text-lg shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                Voltar
+            </a>
+
+            <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl font-bold transition-all shadow-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                Sair
+            </a>
+        </div>
+
+        <div class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-white{% endif %} rounded-3xl p-10 sm:p-14 shadow-2xl mb-8">
+            <div class="text-center mb-10">
+                <div class="flex justify-center mb-6">
+                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-full p-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-20 h-20 text-white"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-bold mb-2 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">
+                    Olá, {{ username }}!
+                </h1>
+                <p class="text-xl sm:text-2xl {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %}">
+                    Veja o seu progresso de aprendizagem
+                </p>
+            </div>
+
+            <div class="{% if high_contrast %}bg-black border-4 border-white{% else %}bg-gradient-to-br from-blue-50 to-purple-50{% endif %} rounded-2xl p-8 mb-8">
+                <div class="flex items-center gap-4 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-yellow-500"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7c0 3.31 2.69 6 6 6s6-2.69 6-6V2Z"/></svg>
+                    <h2 class="text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Progresso Geral</h2>
+                </div>
+
+                <div class="mb-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-xl font-bold {% if high_contrast %}text-gray-300{% else %}text-gray-700{% endif %}">
+                            {{ completed_tutorials }} de {{ total_tutorials }} tutoriais completos
+                        </span>
+                        <span class="text-xl font-bold {% if high_contrast %}text-yellow-400{% else %}text-blue-600{% endif %}">
+                            {{ progress_percentage }}%
+                        </span>
+                    </div>
+                    <div class="w-full {% if high_contrast %}bg-gray-700{% else %}bg-gray-300{% endif %} rounded-full h-6">
+                        <div
+                            class="{% if high_contrast %}bg-yellow-400{% else %}bg-gradient-to-r from-blue-600 to-purple-600{% endif %} h-6 rounded-full transition-all"
+                            style="width: {{ progress_percentage }}%;"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 {% if high_contrast %}text-white{% else %}text-blue-600{% endif %}"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    <h2 class="text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Progresso por Categoria</h2>
+                </div>
+
+                <div class="space-y-6">
+                    {% for category in categories %}
+                    <div class="{% if high_contrast %}bg-black border-2 border-gray-700{% else %}bg-gray-50{% endif %} rounded-xl p-6">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-gray-700{% endif %}">
+                                {{ category.name }}
+                            </span>
+                            <span class="text-xl font-bold {% if high_contrast %}text-gray-400{% else %}text-gray-600{% endif %}">
+                                {{ category.completed }}/{{ category.total }}
+                            </span>
+                        </div>
+                        <div class="w-full {% if high_contrast %}bg-gray-700{% else %}bg-gray-300{% endif %} rounded-full h-4">
+                            <div
+                                class="{% if high_contrast %}bg-white{% else %}{{ category.color_class }}{% endif %} h-4 rounded-full transition-all"
+                                style="width: {{ category.percentage }}%;"
+                            ></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <h2 class="text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Últimos Tutoriais Completos</h2>
+                </div>
+
+                <div class="space-y-4">
+                    {% for tutorial in recent_completions %}
+                    <div class="flex items-center gap-4 {% if high_contrast %}bg-black border-2 border-green-500{% else %}bg-green-50{% endif %} rounded-xl p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-gray-700{% endif %}">{{ tutorial }}</span>
+                    </div>
+                    {% empty %}
+                    <p class="text-gray-500 text-lg">Nenhum tutorial concluído ainda.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
