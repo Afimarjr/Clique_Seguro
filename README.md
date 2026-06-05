@@ -6,7 +6,7 @@ A transição para o mundo digital — como o uso do Pix e de bancos digitais �
 
 * Capacitar o público idoso a realizar tarefas do dia a dia no celular através de explicações visuais claras e sem pressa.
 * Promover a autonomia e segurança de indivíduos com limitações na navegação digital através de orientações antifraude simplificadas.
-
+  
 ---
 
 ## 📄 Funcionalidades
